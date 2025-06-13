@@ -2,29 +2,29 @@
 <?php
 
 if(isset($_GET['action']) && 'get_user_attendance' == $_GET['action']){
-
     $monthNum = isset($_GET['month'])?$_GET['month']:date('m');
     $month = strtolower(date('F', mktime(0, 0, 0, $monthNum, 10))); 
     $user_id = isset($_GET['user_id'])?$_GET['user_id']:45;
     $year = isset($_GET['year'])?$_GET['year']:date('Y');
-    $query = mysqli_query($db_conn,"SELECT * FROM `attendance` WHERE attendance_month = '$month' AND std_id = '{$user_id}' AND YEAR(current_session) = $year");
+    $query = mysqli_query($db_conn,"SELECT * FROM `attendance` WHERE attendance_month = '$month' AND std_id = '{$user_id}' AND current_session = $year");
     $data = mysqli_fetch_array($query);
     
-    $data = unserialize($data['attendance_value']);
+    $data = isset($data['attendance_value']) ? unserialize($data['attendance_value']) : [];
     $output = [];
     foreach ($data as $key => $value) {
         
         if($value['signin_at']){
-
-            // $date = date('Y-m-d', );
-    
             $output[] = [
                 'date' => $year.'-'.$monthNum.'-'.$key,
-                'markup' => "[day]<span class=\"badge badge-sm rounded-pill px-2 bg-success\" style=\"font-size:12px\">P</span>"
+                'markup' => "<span class=\"badge badge-sm rounded-pill px-2 bg-success\">[day]</span>"
             ];
         }
     
     }
+    $output[] = [
+        'date' => date('Y-m-d'),
+        'markup' => "<span class=\"badge badge-sm rounded-pill px-2 bg-success\">[day]</span>"
+    ];
     echo json_encode($output);
     die;
 }
@@ -231,7 +231,7 @@ if(isset($_POST['type']) && $_POST['type'] == 'teacher')
     $subjects = isset($_POST['subjects'])?serialize($_POST['subjects']):'';
     $teaching_area = isset($_POST['teaching_area'])?serialize($_POST['teaching_area']):'';
     
-    $emp_id = isset($_POST['emp_id'])? $_POST['emp_id']  : date('Y', strtotime($doj)).date('dm', strtotime($dob)).sprintf('%03d',$emp_id);
+    $emp_id = !empty($_POST['emp_id'])? $_POST['emp_id']  : date('Y', strtotime($doj)).date('dm', strtotime($dob)).sprintf('%03d',$emp_id);
     $usermeta = [];
     foreach ($_FILES['documention']['name'] as $key => $value) {
         // Check file size

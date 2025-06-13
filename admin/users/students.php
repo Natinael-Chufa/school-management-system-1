@@ -51,7 +51,7 @@ if (isset($_GET['action'])) {
 
 
   if ('view' != $_GET['action']) :
-    ?>
+?>
     <div class="card">
       <div class="card-body" id="form-container">
         <form action="" id="student-registration" method="post" enctype="multipart/form-data">
@@ -67,18 +67,18 @@ if (isset($_GET['action'])) {
               </div>
               <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="">Gender</label>
-                    <select name="gender" id="gender" class="form-control">
+                  <label for="">Gender</label>
+                  <select name="gender" id="gender" class="form-control">
                     <?php
-                    $genders = ['Male', 'Female','Other'];
+                    $genders = ['Male', 'Female', 'Other'];
                     foreach ($genders as $value) {
                       $selected = ($gender == $value) ? 'selected' : '';
                       echo '<option value="' . $value . '" ' . $selected . '>' . $value . '</option>';
                     } ?>
-                    </select>
+                  </select>
                 </div>
               </div>
-              
+
               <div class="col-lg-4">
                 <div class="form-group">
                   <label for="">DOB</label>
@@ -102,10 +102,10 @@ if (isset($_GET['action'])) {
                   <label for="">Religon</label>
                   <select name="religion" id="religion" class="form-control">
                     <?php
-                    $religions = ['Hindu', 'Muslim','Cristian','Buddhism','Jainism','Other'];
+                    $religions = ['Hindu', 'Muslim', 'Cristian', 'Buddhism', 'Jainism', 'Other'];
                     foreach ($religions as $value) {
                       $selected = ($religion == $value) ? 'selected' : '';
-                      echo '<option value="' . $value . '" ' . $selected . '>' . $value. '</option>';
+                      echo '<option value="' . $value . '" ' . $selected . '>' . $value . '</option>';
                     } ?>
                   </select>
                 </div>
@@ -115,7 +115,7 @@ if (isset($_GET['action'])) {
                   <label for="">Category</label>
                   <select name="category" id="category" class="form-control">
                     <?php
-                    $categories = ['General', 'OBC','SC','ST','Minority','EBC'];
+                    $categories = ['General', 'OBC', 'SC', 'ST', 'Minority', 'EBC'];
                     foreach ($categories as $value) {
                       $selected = ($category == $value) ? 'selected' : '';
                       echo '<option value="' . $value . '" ' . $selected . '>' . $value . '</option>';
@@ -298,14 +298,14 @@ if (isset($_GET['action'])) {
               </div>
               <div class="col-lg-2">
                 <div class="form-group">
-                  <label for="">Current Session</label>
-                  <input type="text" class="form-control" placeholder="Subject Streem" name="subject_streem" value="<?php echo $subject_streem; ?>">
+                  <label for="">Session</label>
+                  <input type="text" class="form-control" placeholder="Session" name="session" value="2024-2025">
                 </div>
               </div>
               <div class="col-lg-2">
                 <div class="form-group">
                   <label for="">Date of Admission</label>
-                  <input type="date"  class="form-control" placeholder="Date of Admission" name="doa" value="<?php echo $doa; ?>">
+                  <input type="date" class="form-control" placeholder="Date of Admission" name="doa" value="<?php echo $doa; ?>">
                 </div>
               </div>
             </div>
@@ -368,10 +368,10 @@ if (isset($_GET['action'])) {
       </div>
     </div>
 
-  <?php else : 
+  <?php else :
 
     include('../lib/std-proifle.php');
-    endif; ?>
+  endif; ?>
 <?php  } else { ?>
   <!-- Info boxes -->
   <div class="card">
@@ -460,7 +460,7 @@ if (isset($_GET['action'])) {
       processing: true,
       serverSide: true,
       "search": {
-        "search": "<?php echo isset($_GET['s'])?$_GET['s']:'';?>"
+        "search": "<?php echo isset($_GET['s']) ? $_GET['s'] : ''; ?>"
       }
     });
   })
@@ -484,11 +484,11 @@ if (isset($_GET['action'])) {
         success: function(response) {
           console.log(response);
           // if (response.success == true) {
-            location.href = 'http://localhost/sms-project/admin/user-account.php?user=student';
+          location.href = 'http://localhost/sms-project/admin/user-account.php?user=student';
           // }
         },
         complete: function() {
-        //   jQuery('#loader').hide();
+          //   jQuery('#loader').hide();
         }
       });
     }
