@@ -1,6 +1,6 @@
 <?php
 
-  $db_conn = mysqli_connect('localhost', 'root', 'root','sms_project');
+  $db_conn = mysqli_connect('localhost', 'root', 'Software','sms_project');
 
   if (!$db_conn) {
     echo 'Connection Failed';
@@ -25,14 +25,14 @@
     }
 
     ?>
-    <form action="" method="post">
-      <div class="">
+<form action="" method="post">
+    <div class="">
         <input type="url" class="" name="site_url" placeholder="Enter your site URL">
 
         <button>Submit</button>
-      </div>
-    </form>
-    <?php 
+    </div>
+</form>
+<?php 
 
     die;
   }
